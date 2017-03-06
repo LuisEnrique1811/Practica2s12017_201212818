@@ -129,7 +129,10 @@ public class PanelPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnListaActionPerformed
 
     private void btnPilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPilaActionPerformed
-        
+        Pila ver = new Pila();        
+        ver.setVisible(true);
+        ver.setLocationRelativeTo(null); 
+        this.dispose();            
     }//GEN-LAST:event_btnPilaActionPerformed
 
     private void btnMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatrizActionPerformed

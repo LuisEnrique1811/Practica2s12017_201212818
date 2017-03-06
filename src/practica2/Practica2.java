@@ -6,5 +6,6 @@ public class Practica2 {
         PanelPrincipal ver = new PanelPrincipal();
         ver.setVisible(true);
         ver.setLocationRelativeTo(null);        
-    }
+    }    
+    
 }

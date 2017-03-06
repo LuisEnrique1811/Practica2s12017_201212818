@@ -8,15 +8,20 @@ import com.squareup.okhttp.Response;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+
 
 public class Lista extends javax.swing.JFrame {
 
+    ImageIcon fondo;
     public Lista() {
-        initComponents();
+        initComponents();        
     }
     
     public static OkHttpClient webClient = new OkHttpClient();
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -28,8 +33,19 @@ public class Lista extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jpanelLista = new javax.swing.JEditorPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -45,14 +61,41 @@ public class Lista extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Borrar Palabra");
+        txtBorrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBorrarKeyTyped(evt);
+            }
+        });
 
-        jButton3.setText("Buscar");
+        jButton2.setText("Borrar Palabra #");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Buscar Palabra");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        jButton4.setText("Graficar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Agregar Palabra");
+
+        jLabel2.setText("Borrar por Indice");
+
+        jLabel3.setText("Buscar por Palabra");
+
+        jpanelLista.setContentType("text/html"); // NOI18N
+        jScrollPane1.setViewportView(jpanelLista);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,37 +103,58 @@ public class Lista extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtBorrar)
-                            .addComponent(txtAgregar)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                                    .addComponent(txtBorrar)
+                                    .addComponent(txtBuscar))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(29, 29, 29))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtAgregar)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
 
@@ -108,10 +172,19 @@ public class Lista extends javax.swing.JFrame {
        String nombre = txtAgregar.getText();
        RequestBody formBody = new FormEncodingBuilder()
                 .add("nombre", nombre)
-                .add("index", "1")
                 .build();
         String r = getString("agregarLista_ajax", formBody); 
         System.out.println(r);
+        
+        RequestBody formBodyA = new FormEncodingBuilder()
+                .add("nombre", "1")
+                .build();
+        
+        String rr = getString("crearArchivoLista", formBodyA);
+        String rrr = getString("grabarArchivoLista", formBodyA); 
+        graphviz(rrr);       
+        
+        txtAgregar.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -121,7 +194,45 @@ public class Lista extends javax.swing.JFrame {
                 .build();
         String r = getString("buscar_ajax", formBody); 
         System.out.println(r);
+        
+        txtBuscar.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtBorrarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBorrarKeyTyped
+        char c=evt.getKeyChar(); 
+          if(Character.isLetter(c)) { 
+              getToolkit().beep();               
+              evt.consume();                
+              JOptionPane.showMessageDialog(null,"Caracter no Valido");               
+          }
+    }//GEN-LAST:event_txtBorrarKeyTyped
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        cerrar();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String index = txtBorrar.getText();
+        RequestBody formBody = new FormEncodingBuilder()
+                .add("index", index)
+                .build();
+        String r = getString("borrar_ajax", formBody); 
+        System.out.println(r);
+        
+        RequestBody formBodyA = new FormEncodingBuilder()
+                .add("nombre", "1")
+                .build();
+        
+        String rr = getString("crearArchivoLista", formBodyA);
+        String rrr = getString("grabarArchivoLista", formBodyA); 
+        graphviz(rrr);   
+        
+        txtBorrar.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        imprimirImagenLista();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public static String getString(String metodo, RequestBody formBody) {
         
@@ -138,6 +249,57 @@ public class Lista extends javax.swing.JFrame {
         }
         return null;
     }  
+    
+    public void cerrar(){
+        Object [] opciones ={"Si","No"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane,
+                "Cerrar Aplicación?",
+                "Cerrar Aplicación",
+        JOptionPane.YES_NO_CANCEL_OPTION,
+        JOptionPane.QUESTION_MESSAGE,null,opciones,"Si");
+        if (eleccion == JOptionPane.YES_OPTION){
+            System.exit(0);
+        }else{
+            setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); 
+        }
+    } 
+    
+    public void graphviz(String nombreArchivo){
+        try 
+        {  
+            String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+
+            String fileInputPath = "C:\\Users\\l_enr\\Documents\\NetBeansProjects\\Practica2\\src\\practica2\\"+nombreArchivo+".txt";
+
+            String fileOutputPath = "C:\\Users\\l_enr\\Documents\\NetBeansProjects\\Practica2\\src\\imagenes\\"+nombreArchivo+".png";
+
+            String tParam = "-Tjpg";
+
+            String tOParam = "-o";
+
+            String[] cmd = new String[5];
+            cmd[0] = dotPath;
+            cmd[1] = tParam;
+            cmd[2] = fileInputPath;
+            cmd[3] = tOParam;
+            cmd[4] = fileOutputPath;
+
+            Runtime rt = Runtime.getRuntime();
+
+            rt.exec( cmd );
+            //System.out.println("Imagen Creada");
+        } catch (Exception ex) {
+        ex.printStackTrace();
+        }  finally {
+       
+        }
+    }     
+    
+    void imprimirImagenLista(){
+        String url = "\"file:C:\\Users\\l_enr\\Documents\\NetBeansProjects\\Practica2\\src\\imagenes\\imagenLista.png\"";
+        jpanelLista.setText("<html>\n" + "  <head>\n" +"\n" +"</head>\n"+"<body>\n"+"<img src="+url+">\n" +"</body>\n" +"</html>");
+    }
+    
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -176,6 +338,12 @@ public class Lista extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JEditorPane jpanelLista;
     private javax.swing.JTextField txtAgregar;
     private javax.swing.JTextField txtBorrar;
     private javax.swing.JTextField txtBuscar;
