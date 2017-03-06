@@ -1,7 +1,5 @@
 digraph G{
-nodo_996 [label=996]
 nodo_9 [label=9]
 nodo_6 [label=6]
-nodo_996->nodo_9
 nodo_9->nodo_6
 }

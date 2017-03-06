@@ -118,7 +118,10 @@ public class PanelPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColaActionPerformed
-       
+       Cola ver = new Cola();        
+        ver.setVisible(true);
+        ver.setLocationRelativeTo(null); 
+        this.dispose();  
     }//GEN-LAST:event_btnColaActionPerformed
 
     private void btnListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaActionPerformed

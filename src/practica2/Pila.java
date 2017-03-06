@@ -145,7 +145,7 @@ public class Pila extends javax.swing.JFrame {
             .add("valor", valor)
             .build();
             String r = getString("agregarPila_ajax", formBody); 
-            System.out.println(r + "---");
+            System.out.println(r);
         txtvalor.setText("");      
         
         RequestBody formBodyA = new FormEncodingBuilder()
@@ -163,7 +163,7 @@ public class Pila extends javax.swing.JFrame {
             .add("valor", valor)
             .build();
             String r = getString("eliminarPila_ajax", formBody); 
-            System.out.println(r + "---");
+            System.out.println(r);
             
         RequestBody formBodyA = new FormEncodingBuilder()
                 .add("nombre", "1")

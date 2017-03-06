@@ -1,3 +1,5 @@
 digraph G{
-luis_nodo_0 [label=luis]
+Luis_nodo_0 [label=Luis]
+Lopez_nodo_1 [label=Lopez]
+Luis_nodo_0->Lopez_nodo_1
 }

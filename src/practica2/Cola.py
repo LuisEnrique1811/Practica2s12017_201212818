@@ -1,43 +1,43 @@
-from NodoPila import NodoPila
+from NodoCola import NodoCola
 
-class Pila():
+class Cola():
     def __init__ (self):
-        self.ultimo = None
+        self.inicio = None
         self.cont = 0
         
     def agregar(self, dato):
-        if self.ultimo != None:
-            nuevoNodo = NodoPila(dato, self.cont, None)
-            nuevoNodo.siguiente = self.ultimo
-            self.ultimo = nuevoNodo
+        if self.inicio != None:
+            temp = self.inicio
+            while temp.siguiente != None:
+                temp = temp.siguiente
+            
+            nuevoNodo = NodoCola(dato, self.cont, None)
             self.cont=self.cont+1
+            temp.siguiente = nuevoNodo
                 
-        if self.ultimo == None:
-            nuevoNodo = NodoPila(dato, self.cont, None)
+        if self.inicio == None:
+            nuevoNodo = NodoCola(dato, self.cont, None)
             self.cont=self.cont+1
-            self.ultimo = nuevoNodo
+            self.inicio = nuevoNodo
             
     def mostrar(self):
-        temp = self.ultimo        
-        while temp != None:            
-            temp = temp.siguiente 
+        temp = self.inicio        
+        while temp != None:
+            temp = temp.siguiente   
             
     def eliminar(self):
-        temp = self.ultimo
-        self.ultimo = self.ultimo.siguiente
+        temp = self.inicio
+        self.inicio = self.inicio.siguiente
         return str(temp.dato)
-        
-    def size(self):
-        return self.cont
     
     def crearArchivo(self):
-        archivo=open('imagenPila.txt','w')
+        archivo=open('imagenCola.txt','w')
         archivo.close()
         
     def grabarArchivo(self):
-        temp = self.ultimo
+        temp = self.inicio
         cont1 = 0
-        archivo=open('imagenPila.txt','a')
+        archivo=open('imagenCola.txt','a')
         archivo.write('digraph G{\n')
         while temp!=None:
             archivo.write("nodo_" + str(temp.dato) + " [label="+str(temp.dato)+"]\n")
@@ -45,7 +45,7 @@ class Pila():
             temp = temp.siguiente
         cont1 = 0
         cont2 = cont1+1
-        temp = self.ultimo
+        temp = self.inicio
         while temp!=None:
             if temp.siguiente!=None:
                 archivo.write("nodo_"+str(temp.dato)+"->"+"nodo_"+str(temp.siguiente.dato)+"\n")
@@ -54,4 +54,4 @@ class Pila():
             temp = temp.siguiente
         archivo.write('}')
         archivo.close()
-        return "imagenPila"
+        return "imagenCola"
